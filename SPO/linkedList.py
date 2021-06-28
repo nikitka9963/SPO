@@ -4,12 +4,12 @@ class LinkedList:
 
     def __repr__(self):
         current = self.head
-        stroka = '[ '
+        str = '[ '
         while current is not None:
-            stroka += f'{current.value},'
+            str += f'{current.value},'
             current = current.nextValue
-        stroka += ']'
-        return stroka
+        str += ']'
+        return str
 
     def contains(self, value):
 
