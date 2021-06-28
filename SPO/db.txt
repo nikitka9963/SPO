@@ -1,0 +1,27 @@
+a = 123;
+b = a - 120;
+
+lk = LinkedList;
+lk.push(a);
+lk.push(b);
+
+while (a > b)
+{
+    c = 50;
+    a = a - 3;
+
+    if (a > c)
+    {
+        b = c - 10;
+        lk.push(a);
+    }
+    else
+    {
+        b = b + 10;
+        lk.push(b);
+    }
+
+    c = c + 1;
+}
+
+lk.remove(1);
