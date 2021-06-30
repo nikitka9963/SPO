@@ -4,11 +4,12 @@ from parser import Parser
 
 lex = Lexer()
 lex.get_term('db.txt')
-print('Tokens:', lex.list_tokens)
 
 par = Parser(lex.list_tokens)
 Tree = par.S()
+
+print('Tokens:', lex.list_tokens)
 print('Tree:\n', Tree)
 
-StackMachine = StackMachine(Tree.children)
-StackMachine.start()
+sm = StackMachine(Tree.children)
+sm.start()
