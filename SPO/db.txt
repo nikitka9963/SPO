@@ -1,27 +1,44 @@
-a = 123;
-b = a - 120;
+a = 23;
+a = 30;
+a = 25;
+b = a - 10;
+c = b - 2;
+c = c * 23;
+d = 2 + b;
+g = 2 * 3;
+e = 2 * 3;
+d = d + 5;
+k = 3 * 17;
+a = 28 * 2;
+
+if(a > c)
+{
+}
+else
+{
+}
 
 lk = LinkedList;
-lk.push(a);
-lk.push(b);
+lk.push(12);
+lk.push(13);
+lk.push(130);
+
+lk.remove(12);
+
+
+a = a - 3;
+b = b + 50;
+c = c + 1;
+
+if(a < c)
+{
+}
 
 while (a > b)
 {
-    c = 50;
-    a = a - 3;
-
-    if (a > c)
-    {
-        b = c - 10;
-        lk.push(a);
-    }
-    else
-    {
-        b = b + 10;
-        lk.push(b);
-    }
-
-    c = c + 1;
 }
 
-lk.remove(1);
+if (a < b)
+{
+    c = c * 5;
+}
