@@ -5,7 +5,7 @@ class Lexer(object):
     token = {"ЕСЛИ": "^if$", "ИНАЧЕ": "^else$", "ПОКА": "^while$", "ОПЕРАЦИЯ": "^[-+*/]$", "ЛОГИЧЕСКАЯ_ОПЕРАЦИЯ": r"^==|>|>=|<|<=|!=$",
               "ЛЕВАЯ_СКОБКА": "[(]", "ПРАВАЯ_СКОБКА": "[)]", 'ТОЧКА': r'\.', "ОКОНЧАНИЕ": "^;$", "ЛЕВАЯ_ФИГУРНАЯ": "^[{]$",
              'СВЯЗНЫЙ_СПИСОК': r'LinkedList', "ПРАВАЯ_ФИГУРНАЯ": "^[}]$", "ОПЕРАЦИЯ_ПРИСВАИВАНИЯ": "^=$",
-              "КОНЕЦ": "^;$", "ЧИСЛО": r"^0|([1-9][0-9]*)$", "СТРОКА": r"'[^']*'", "ПЕРЕМЕННАЯ": "^[a-zA-Z0-9_]+$", "НЕ_ОПРЕДЕЛЕНО": r".*[^.]*"}
+                  "КОНЕЦ": "^;$", "ЧИСЛО": r"^0|([1-9][0-9]*)$", "СТРОКА": r"'[^']*'", "ПЕРЕМЕННАЯ": "^[a-zA-Z0-9_]+$", "НЕ_ОПРЕДЕЛЕНО": r".*[^.]*"}
 
     def __init__(self):
         self.list_tokens = []
@@ -52,3 +52,29 @@ class Lexer(object):
             token = self.__set_token(buffer)
             if not token == "НЕ_ОПРЕДЕЛЕНО":
                 self.list_tokens.append({token: buffer[0]})
+
+    def optTerm(self):
+        ind = {}
+        flag = True
+        j = 0
+        res = []
+
+        for i in range(len(self.list_tokens)):
+            if list(self.list_tokens[i].keys())[0] == "ЛЕВАЯ_ФИГУРНАЯ" and list(self.list_tokens[i + 1].keys())[0] == "ПРАВАЯ_ФИГУРНАЯ":
+                if flag == False:
+                    flag = True
+                    continue
+
+                for j in range(len(self.list_tokens[:i]), 0, -1):
+                    if list(self.list_tokens[j].keys())[0] == "ЕСЛИ" or list(self.list_tokens[j].keys())[0] == "ПОКА":
+                        break
+
+                if list(self.list_tokens[i + 2].keys())[0] == "ИНАЧЕ":
+                    ind[j] = i + 5
+                    flag = False
+                else:
+                    ind[j] = i + 2
+
+        res = [x for i, x in enumerate(self.list_tokens) if all([not x <= i < y for x, y in ind.items()])]
+
+        return res

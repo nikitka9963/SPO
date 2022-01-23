@@ -4,6 +4,7 @@ class Parser:
         self.i = 0
         self.start = lexer
         self.LB = 0
+        self.flag = False
 
     def S(self):
         S = Node('S')
@@ -54,7 +55,7 @@ class Parser:
             else:
                 return None
         except BaseException:
-            raise BaseException
+            return None
 
     def method(self):
         method = Node('method', height=self.height)
@@ -77,6 +78,7 @@ class Parser:
         return method
 
     def if_expr(self):
+        self.flag = False
         height = self.height
         if_expr = Node('if_expr', height=self.height)
         self.height += 1

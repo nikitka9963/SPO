@@ -66,7 +66,7 @@ class LinkedList:
                 return True
             else:
                 lastItem = lastItem.nextValue
-                
+
         return False
 
 
