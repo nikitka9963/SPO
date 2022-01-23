@@ -1,0 +1,18 @@
+вар = "test".
+Условный_оператор = "IF", Логическое_выражение, "THEN",
+Группа_операторов,
+{"ELSIF", Логическое_выражение, "THEN", Группа_операторов},
+["ELSE", Группа_операторов],
+"ENDIF".
+вар = "^\.$".
+REPETITION_L = "^\{$".
+REPETITION_R = "^\}$".
+GROUPING_L = "^\($".
+GROUPING_R = "^\)$".
+zero_or_one = COND_OCC_L, expr, COND_OCC_R.
+oper = VAR, ASSIGN, expr, END.
+syntax = {oper}.
+expr = (VAR | STRING | zero_or_one | zero_or_more | group), "str", tmp.
+ASSIGN = "^=$".
+.
+
